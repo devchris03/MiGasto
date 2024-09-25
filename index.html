@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
     <title>Mi Gasto</title>
 </head>
 <body>
-    <header class="header">Gasto semanal</header>
+    <h1 class="header">Gasto semanal</h1>
     <main>
         <section class="dashboard">
             <div class="container">
@@ -14,12 +15,12 @@
                 <form id="form" class="form">
                     <div class="campo">
                         <label for="gasto" class="label">Gastos:</label>
-                        <input type="text" id="gasto" required placeholder="Nombre del gasto">
+                        <input class="input" type="text" id="gasto" required placeholder="Nombre del gasto">
                     </div> <!-- campo -->
                     
                     <div class="campo">
                         <label for="gasto" class="label">Cantidad:</label>
-                        <input type="number" required id="gasto" placeholder="Cantidad en $">
+                        <input type="number" class="input" required id="gasto" placeholder="Cantidad en $">
                     </div> <!-- campo -->
 
                     <button type="submit" class="button" id="submit">Agregar</button>
@@ -30,8 +31,8 @@
             <div class="container">
                 <h2 class="title">Listado</h2>
                 <ul class="list"></ul> <!-- list -->
-                <p class="presupuesto">Presupuesto: $<span id="presupuestoText"></span></p>
-                <p class="restante">Restante: $<span class="restanteText"></span></p>
+                <p class="presupuesto box">Presupuesto: $<span id="presupuestoText"></span></p>
+                <p class="restante box">Restante: $<span class="restanteText"></span></p>
             </div> <!-- container -->
         </section>
     </main>
