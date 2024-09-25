@@ -15,12 +15,12 @@
                 <form id="form" class="form">
                     <div class="campo">
                         <label for="gasto" class="label">Gastos:</label>
-                        <input class="input" type="text" id="gasto" required placeholder="Nombre del gasto">
+                        <input class="input" type="text" id="gasto"  placeholder="Nombre del gasto">
                     </div> <!-- campo -->
                     
                     <div class="campo">
-                        <label for="gasto" class="label">Cantidad:</label>
-                        <input type="number" class="input" required id="gasto" placeholder="Cantidad en $">
+                        <label for="cantidad" class="label">Cantidad:</label>
+                        <input type="number" class="input"  id="cantidad" placeholder="Cantidad en $">
                     </div> <!-- campo -->
 
                     <button type="submit" class="button" id="submit">Agregar</button>
@@ -32,9 +32,10 @@
                 <h2 class="title">Listado</h2>
                 <ul class="list"></ul> <!-- list -->
                 <p class="presupuesto box">Presupuesto: $<span id="presupuestoText"></span></p>
-                <p class="restante box">Restante: $<span class="restanteText"></span></p>
+                <p class="restante box">Restante: $<span id="restanteText"></span></p>
             </div> <!-- container -->
         </section>
     </main>
+    <script src="./js/app.js"></script>
 </body>
 </html>
