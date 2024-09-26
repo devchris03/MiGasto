@@ -56,6 +56,23 @@ body {
     border: 1px solid var(--colorLightblue);
 }
 
+.error,
+.sucess {
+    padding: .5rem;
+    border-radius: .5rem;
+    text-align: center;
+}
+
+.error {
+    color: var(--colorRed);
+    background: rgb(253, 87, 78, .2);
+}
+
+.sucess {
+    color: var(--colorGreen);
+    background: rgb(110, 157, 32, .2);
+}
+
 .button {
     padding: .5rem;
     inline-size: 100%;
