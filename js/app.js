@@ -25,10 +25,17 @@ class UI {
             alert.classList.add('sucess')
         }
 
-        //agrega el mensaje al html 
-        const container = document.querySelector('.container:first-child');
-        container.insertBefore(alert, form);
 
+        const container = document.querySelector('.container:first-child');
+        
+        // verifica y elimina alerta existente
+        const exist = document.querySelector('.message');
+        if(exist) {
+            exist.remove();
+        }
+        
+        //agrega el mensaje al html 
+        container.insertBefore(alert, form);
         
         setTimeout(() => {
             alert.remove();
@@ -67,12 +74,6 @@ function loadEvents() {
         const gastos = form.querySelector('#gasto');
         const cantidad = form.querySelector('#cantidad');
 
-        // verifica y elimina alerta existente
-        const exist = document.querySelector('.message');
-        if(exist != null) {
-            exist.remove();
-        }
-
         // muestra mensaje de error
         if(gastos.value.trim() === '' || cantidad.value === '') {
             interface.mostrarMensaje('error', 'Ambos datos son obligatorios');
@@ -85,6 +86,4 @@ function loadEvents() {
         // muestra mensaje de éxito
         interface.mostrarMensaje('sucess', 'Gasto agregado a la lista.')
     }
-
-
 }
