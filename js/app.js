@@ -20,6 +20,7 @@ class Data {
         const Obj = {
             gasto: this.expense,
             cantidad: this.quantity,
+            id: Date.now(),
         }
 
         this.expensesList = [...this.expensesList, Obj];
@@ -75,11 +76,15 @@ class UI {
 
     showList (list) {
         list.forEach(item => {
-            const {cantidad, gasto} = item;
+            const {cantidad, gasto, id} = item;
             const listItem = document.createElement('li');
+            listItem.classList.add('item')
             listItem.innerHTML = `
                 <span>${gasto}</span>
-                <span>${cantidad}</span>
+                <span>$ ${cantidad}</span>
+                <button class="deleteItem" id="${id}" aria-label="Elimina gasto">
+                    <img src="./image/icon-delete.png" alt="icono de tacho" width="24">
+                </button>
             `;
 
             const listContainer = document.querySelector('#listContainer');
