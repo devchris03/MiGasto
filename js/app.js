@@ -1,5 +1,6 @@
 // -------------------- VARIABLES --------------------
 const form = document.querySelector('#form');
+const listContainer = document.querySelector('#listContainer');
 
 // -------------------- EVENTOS --------------------
 document.addEventListener('DOMContentLoaded', getBudget);
@@ -74,6 +75,13 @@ class UI {
         }, 3000)
     }
 
+
+    cleanList() {
+        while(listContainer.firstChild) {
+            listContainer.removeChild(listContainer.firstChild)
+        } 
+    }
+
     showList (list) {
         list.forEach(item => {
             const {cantidad, gasto, id} = item;
@@ -143,6 +151,9 @@ function expenses(event) {
     form.reset();
 
     const list = data.expensesList;
+
+    //limpia lista 
+    interface.cleanList(); 
 
     // muestra lista en el html
     interface.showList(list);
