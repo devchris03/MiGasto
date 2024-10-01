@@ -28,19 +28,21 @@ class Data {
     }
 
     restar(list) {
+        this.remainder = this.budget;
         list.forEach(item => {
-            return this.remainder -= item.cantidad;
+            this.remainder -= item.cantidad
         })
     }
 }
 
 
 class UI {
+    constructor() {
+        this.presupuestoText = document.querySelector('#presupuestoText');
+        this.restanteText = document.querySelector('#restanteText')
+    }
 
     showBudget(cost) {
-        const presupuestoText = document.querySelector('#presupuestoText');
-        const restanteText = document.querySelector('#restanteText');
-    
         restanteText.textContent = cost.remainder; 
         presupuestoText.textContent = cost.budget; 
     }
@@ -102,7 +104,37 @@ class UI {
     }
 
     showRemain(result) {
-        document.querySelector('#restanteText').textContent = result;
+        restanteText.textContent = result;
+    }
+
+    showWarning (data) {
+        if(data.remainder < ( (data.budget * 25) / 100)) {
+            restanteText.parentElement.classList.add('red');
+        } else if (data.remainder < ( (data.budget * 50) / 100)) {
+            restanteText.parentElement.classList.add('orange');
+        }
+
+        if(data.remainder <= 0) {
+
+            // crea mensaje de advertencia
+            const warning = document.createElement('p');
+            warning.textContent = 'El presupuesto se ha agotado.';
+            warning.classList.add('error');
+
+            document.querySelector('.container').insertBefore(warning, form);
+            
+            
+            setTimeout(() => {
+                warning.remove()
+            }, 3000)
+            
+            
+            document.querySelector('#submit').disabled = true;
+            
+        } else {
+            document.querySelector('#submit').disabled = false;
+        }
+        
     }
 
 }
@@ -162,4 +194,6 @@ function expenses(event) {
     data.restar(list);
     interface.showRemain(data.remainder);
 
+    //advierte cantidad restante 
+    interface.showWarning(data);
 }
