@@ -5,6 +5,7 @@ const listContainer = document.querySelector('#listContainer');
 // -------------------- EVENTOS --------------------
 document.addEventListener('DOMContentLoaded', getBudget);
 form.addEventListener('submit', expenses)
+listContainer.addEventListener('click', remove)
 
 // -------------------- CLASSES --------------------
 class Data {
@@ -97,8 +98,6 @@ class UI {
                 </button>
             `;
 
-            const listContainer = document.querySelector('#listContainer');
-
             listContainer.appendChild(listItem);
         })
     }
@@ -112,6 +111,9 @@ class UI {
             restanteText.parentElement.classList.add('red');
         } else if (data.remainder < ( (data.budget * 50) / 100)) {
             restanteText.parentElement.classList.add('orange');
+            restanteText.parentElement.classList.remove('red');
+        } else {
+            restanteText.parentElement.classList.remove('orange');
         }
 
         if(data.remainder <= 0) {
@@ -135,6 +137,11 @@ class UI {
             document.querySelector('#submit').disabled = false;
         }
         
+    }
+
+    showFilter(id) {
+        data.expensesList = data.expensesList.filter(item => item.id !== Number(id));
+        return data.expensesList;
     }
 
 }
@@ -182,18 +189,39 @@ function expenses(event) {
     // reinicia el formulario
     form.reset();
 
-    const list = data.expensesList;
-
     //limpia lista 
     interface.cleanList(); 
 
     // muestra lista en el html
-    interface.showList(list);
+    interface.showList(data.expensesList);
 
     // Cálcula restante
-    data.restar(list);
+    data.restar(data.expensesList);
     interface.showRemain(data.remainder);
 
     //advierte cantidad restante 
     interface.showWarning(data);
+}
+
+function remove(event) {
+
+    if(event.target.closest('.deleteItem')) {
+        const idExpense = event.target.closest('.deleteItem').id;
+        
+        //emilina gasto
+        interface.showFilter(idExpense);
+        
+        // limpia lista
+        interface.cleanList();
+
+        // muestra lista
+        interface.showList(data.expensesList);
+
+        // Cálcula restante
+        data.restar(data.expensesList);
+        interface.showRemain(data.remainder);
+
+        //advierte cantidad restante 
+        interface.showWarning(data);
+    }
 }
